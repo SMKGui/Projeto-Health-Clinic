@@ -1,13 +1,30 @@
-﻿using webApi_HealthClinic.Domains;
+﻿using webapi.event_.tarde.Contexts;
+using webApi_HealthClinic.Domains;
 using webApi_HealthClinic.Interfaces;
 
 namespace webApi_HealthClinic.Repositories
 {
     public class PacienteRepository : IPacienteRepository
     {
-        public void Atualizar(Guid Id, PacienteDomain paciente)
+        private readonly HealthContext ctx;
+
+        public PacienteRepository()
         {
-            throw new NotImplementedException();
+            ctx = new HealthContext();
+        }
+
+        public void Atualizar(Guid id, PacienteDomain paciente)
+        {
+            PacienteDomain pacienteBuscado = ctx.Paciente.Find(id);
+            if (pacienteBuscado != null)
+            {
+                pacienteBuscado.DataNascimento = paciente.DataNascimento;
+                pacienteBuscado.Telefone = paciente.Telefone;
+                pacienteBuscado.CPF = paciente.CPF;
+            }
+
+            ctx.Update(especialidadeBuscada);
+            ctx.SaveChanges();
         }
 
         public PacienteDomain BuscarPorId(Guid id)
@@ -17,7 +34,16 @@ namespace webApi_HealthClinic.Repositories
 
         public void Cadastrar(PacienteDomain novoPaciente)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ctx.Paciente.Add(novoPaciente);
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Deletar(Guid id)
@@ -27,7 +53,14 @@ namespace webApi_HealthClinic.Repositories
 
         public List<PacienteDomain> ListarTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ctx.Paciente.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

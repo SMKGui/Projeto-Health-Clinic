@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\36992072854\\Desktop\\webApi_HealthClinic\\webApi_HealthClinic.csproj": {}
+    "C:\\Users\\36992072854\\Desktop\\Projeto-Health-Clinic\\webApi_HealthClinic\\webApi_HealthClinic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\36992072854\\Desktop\\webApi_HealthClinic\\webApi_HealthClinic.csproj": {
+    "C:\\Users\\36992072854\\Desktop\\Projeto-Health-Clinic\\webApi_HealthClinic\\webApi_HealthClinic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\36992072854\\Desktop\\webApi_HealthClinic\\webApi_HealthClinic.csproj",
+        "projectUniqueName": "C:\\Users\\36992072854\\Desktop\\Projeto-Health-Clinic\\webApi_HealthClinic\\webApi_HealthClinic.csproj",
         "projectName": "webApi_HealthClinic",
-        "projectPath": "C:\\Users\\36992072854\\Desktop\\webApi_HealthClinic\\webApi_HealthClinic.csproj",
+        "projectPath": "C:\\Users\\36992072854\\Desktop\\Projeto-Health-Clinic\\webApi_HealthClinic\\webApi_HealthClinic.csproj",
         "packagesPath": "C:\\Users\\36992072854\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\36992072854\\Desktop\\webApi_HealthClinic\\obj\\",
+        "outputPath": "C:\\Users\\36992072854\\Desktop\\Projeto-Health-Clinic\\webApi_HealthClinic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\36992072854\\AppData\\Roaming\\NuGet\\NuGet.Config",

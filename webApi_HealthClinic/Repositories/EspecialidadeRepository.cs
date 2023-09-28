@@ -1,33 +1,89 @@
-﻿using webApi_HealthClinic.Domains;
+﻿using Microsoft.Data.SqlClient;
+using webapi.event_.tarde.Contexts;
+using webApi_HealthClinic.Domains;
 using webApi_HealthClinic.Interfaces;
 
 namespace webApi_HealthClinic.Repositories
 {
     public class EspecialidadeRepository : IEspecialidadeRepository
     {
-        public void Atualizar(Guid Id, EspecialidadeDomain especialidade)
+        private readonly HealthContext ctx;
+
+        public EspecialidadeRepository()
         {
-            throw new NotImplementedException();
+            ctx = new HealthContext();
+        }
+
+
+        public void Atualizar(Guid id, EspecialidadeDomain especialidade)
+        {
+            EspecialidadeDomain especialidadeBuscada = ctx.Especialidade.Find(id);
+            if (especialidadeBuscada != null)
+            {
+                especialidadeBuscada.Nome = especialidade.Nome;               
+            }
+
+            ctx.Update(especialidadeBuscada);
+            ctx.SaveChanges();
         }
 
         public EspecialidadeDomain BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                EspecialidadeDomain especialidadeBuscada = ctx.Especialidade.Find(id);
+                return especialidadeBuscada;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Cadastrar(EspecialidadeDomain novaEspecialidade)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ctx.Especialidade.Add(novaEspecialidade);
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                EspecialidadeDomain especialidade = ctx.Especialidade.Find(id);
+
+                if (especialidade != null)
+                {
+                    ctx.Especialidade.Remove(especialidade);
+                }
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public List<EspecialidadeDomain> ListarTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ctx.Especialidade.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IVN1fUmAUDGOAwMy9DVv9VNu1pqT4HEMJ60HyIoxVZMmJWJVm6r8onvrNoPuEWXd89WWAN1LGb+zIlRYK8PbBg==",
+  "dgSpecHash": "4S9WqG5mhfzcAVddDgxPSSW3MOT7mYUzyQx1NVFzDpT2sIURdcVhNwyAY+mlnGtweC7EiPbOMGGciBKcWsQlWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\36992072854\\Desktop\\webApi_HealthClinic\\webApi_HealthClinic.csproj",
+  "projectFilePath": "C:\\Users\\36992072854\\Desktop\\Projeto-Health-Clinic\\webApi_HealthClinic\\webApi_HealthClinic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\36992072854\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\36992072854\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
