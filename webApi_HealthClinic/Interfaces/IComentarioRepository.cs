@@ -10,7 +10,7 @@ namespace webApi_HealthClinic.Interfaces
 
         ComentarioDomain BuscarPorId(Guid id);
 
-        void Atualizar(Guid Id, ComentarioDomain comentario);
+        void Atualizar(Guid id, ComentarioDomain comentario);
 
         void Deletar(Guid id);
     }

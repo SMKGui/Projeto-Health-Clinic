@@ -10,7 +10,7 @@ namespace webApi_HealthClinic.Interfaces
 
         ClinicaDomain BuscarPorId(Guid id);
 
-        void Atualizar(Guid Id, ClinicaDomain clinica);
+        void Atualizar(Guid id, ClinicaDomain clinica);
 
         void Deletar(Guid id);
     }

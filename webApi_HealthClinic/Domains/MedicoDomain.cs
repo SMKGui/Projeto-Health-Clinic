@@ -27,7 +27,7 @@ namespace webApi_HealthClinic.Domains
         public Guid IdEspecialidade { get; set; }
 
         [ForeignKey(nameof(IdEspecialidade))]
-        public EspecialidadeDomain Especialidade { get; set; }
+        public EspecialidadeDomain? Especialidade { get; set; }
 
 
         [Column(TypeName = "VARCHAR(20)")]

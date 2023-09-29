@@ -23,14 +23,24 @@ namespace webApi_HealthClinic.Repositories
                 pacienteBuscado.CPF = paciente.CPF;
             }
 
-            ctx.Update(especialidadeBuscada);
+            ctx.Update(pacienteBuscado);
             ctx.SaveChanges();
         }
 
         public PacienteDomain BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                PacienteDomain pacienteBuscado = ctx.Paciente.FirstOrDefault(a => a.IdPaciente == id);
+                return pacienteBuscado;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
+
 
         public void Cadastrar(PacienteDomain novoPaciente)
         {
@@ -48,7 +58,21 @@ namespace webApi_HealthClinic.Repositories
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                PacienteDomain paciente = ctx.Paciente.Find(id);
+
+                if (paciente != null)
+                {
+                    ctx.Paciente.Remove(paciente);
+                }
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public List<PacienteDomain> ListarTodos()
@@ -64,3 +88,4 @@ namespace webApi_HealthClinic.Repositories
         }
     }
 }
+

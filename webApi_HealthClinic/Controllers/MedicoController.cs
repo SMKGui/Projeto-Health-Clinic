@@ -9,22 +9,22 @@ namespace webApi_HealthClinic.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class PacienteController : ControllerBase
+    public class MedicoController : ControllerBase
     {
-        private IPacienteRepository _pacienteRepository { get; set; }
+        private IMedicoRepository _medicoRepository { get; set; }
 
-        public PacienteController()
+        public MedicoController()
         {
-            _pacienteRepository = new PacienteRepository();
+            _medicoRepository = new MedicoRepository();
         }
 
         [HttpGet]
-        public IActionResult Listar()
+        public IActionResult ListarTodos()
         {
             try
             {
-                List<PacienteDomain> listaPaciente = _pacienteRepository.ListarTodos();
-                return Ok(listaPaciente);
+                List<MedicoDomain> listaMedico = _medicoRepository.ListarTodos();
+                return Ok(listaMedico);
             }
             catch (Exception e)
             {
@@ -33,11 +33,11 @@ namespace webApi_HealthClinic.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(PacienteDomain paciente)
+        public IActionResult Cadastrar(MedicoDomain medico)
         {
             try
             {
-                _pacienteRepository.Cadastrar(paciente);
+                _medicoRepository.Cadastrar(medico);
 
                 return StatusCode(201);
             }
@@ -48,26 +48,12 @@ namespace webApi_HealthClinic.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Atualizar(Guid id, PacienteDomain paciente)
-        {
-            try
-            {
-                _pacienteRepository.Atualizar(id, paciente);
-                return NoContent();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
         [HttpDelete("{id}")]
         public IActionResult Deletar(Guid id)
         {
             try
             {
-                _pacienteRepository.Deletar(id);
+                _medicoRepository.Deletar(id);
                 return NoContent();
             }
             catch (Exception e)
@@ -75,7 +61,20 @@ namespace webApi_HealthClinic.Controllers
 
                 return BadRequest(e.Message);
             }
+        }
 
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(Guid id, MedicoDomain medico)
+        {
+            try
+            {
+                _medicoRepository.Atualizar(id, medico);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet("{id}")]
@@ -83,8 +82,8 @@ namespace webApi_HealthClinic.Controllers
         {
             try
             {
-                PacienteDomain pacienteBuscado = _pacienteRepository.BuscarPorId(id);
-                return Ok(pacienteBuscado);
+                MedicoDomain medicoBuscado = _medicoRepository.BuscarPorId(id);
+                return Ok(medicoBuscado);
             }
             catch (Exception e)
             {

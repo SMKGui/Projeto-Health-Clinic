@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace webApi_HealthClinic.Domains
-{
+{    
     public class PacienteDomain
     {
         [Key]
