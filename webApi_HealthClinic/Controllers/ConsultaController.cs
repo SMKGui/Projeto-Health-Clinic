@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webApi_HealthClinic.Domains;
 using webApi_HealthClinic.Interfaces;
@@ -10,23 +9,22 @@ namespace webApi_HealthClinic.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class ClinicaController : ControllerBase
+    public class ConsultaController : ControllerBase
     {
-        private IClinicaRepository _clinicaRepository { get; set; }
+        private IConsultaRepository _consultaRepository { get; set; }
 
-        public ClinicaController()
+        public ConsultaController()
         {
-            _clinicaRepository = new ClinicaRepository();
+            _consultaRepository = new ConsultaRepository();
         }
 
         [HttpGet]
-        [Authorize (Roles ="Admin")]
         public IActionResult ListarTodos()
         {
             try
             {
-                List<ClinicaDomain> listaClinica = _clinicaRepository.ListarTodos();
-                return Ok(listaClinica);
+                List<ConsultaDomain> listaConsulta = _consultaRepository.ListarTodos();
+                return Ok(listaConsulta);
             }
             catch (Exception e)
             {
@@ -35,11 +33,11 @@ namespace webApi_HealthClinic.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(ClinicaDomain clinica)
+        public IActionResult Cadastrar(ConsultaDomain consulta)
         {
             try
             {
-                _clinicaRepository.Cadastrar(clinica);
+                _consultaRepository.Cadastrar(consulta);
 
                 return StatusCode(201);
             }
@@ -50,13 +48,12 @@ namespace webApi_HealthClinic.Controllers
             }
         }
 
-
         [HttpPut("{id}")]
-        public IActionResult Atualizar(Guid id, ClinicaDomain clinica)
+        public IActionResult Atualizar(Guid id, ConsultaDomain consulta)
         {
             try
             {
-                _clinicaRepository.Atualizar(id, clinica);
+                _consultaRepository.Atualizar(id, consulta);
                 return NoContent();
             }
             catch (Exception e)
@@ -70,7 +67,7 @@ namespace webApi_HealthClinic.Controllers
         {
             try
             {
-                _clinicaRepository.Deletar(id);
+                _consultaRepository.Deletar(id);
                 return NoContent();
             }
             catch (Exception e)
@@ -86,8 +83,8 @@ namespace webApi_HealthClinic.Controllers
         {
             try
             {
-                ClinicaDomain clinicaBuscada = _clinicaRepository.BuscarPorId(id);
-                return Ok(clinicaBuscada);
+                ConsultaDomain consultaBuscada = _consultaRepository.BuscarPorId(id);
+                return Ok(consultaBuscada);
             }
             catch (Exception e)
             {
@@ -95,6 +92,5 @@ namespace webApi_HealthClinic.Controllers
                 return BadRequest(e.Message);
             }
         }
-
     }
 }

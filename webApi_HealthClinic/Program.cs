@@ -29,16 +29,16 @@ builder.Services.AddAuthentication(options =>
         ValidateLifetime = true,
 
         //Forma de criptografia e ainda validação da chave de autenticação
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("projeto-event-webapi-chave-autenticacao-ef")),
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("projeto-healthclinic-webapi-chave-autenticacao-ef")),
 
         //Valida o tempo de expiração do token
         ClockSkew = TimeSpan.FromMinutes(5),
 
         //De onde está vindo (issuer)
-        ValidIssuer = "webapi.event+.tarde",
+        ValidIssuer = "webApi_HealthClinic",
 
         //Para onde está indo (audience)
-        ValidAudience = "webapi.event+.tarde"
+        ValidAudience = "webApi_HealthClinic"
     };
 });
 
@@ -48,8 +48,8 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "API Event+",
-        Description = "API para gerenciamento de eventos - Backend API",
+        Title = "API HealthClinic+",
+        Description = "API para gerenciamento de rede de clinicas medicas - Backend API",
         Contact = new OpenApiContact
         {
             Name = "Senai Informática - Turma Tarde",

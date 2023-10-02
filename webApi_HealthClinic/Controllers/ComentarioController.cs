@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webApi_HealthClinic.Domains;
 using webApi_HealthClinic.Interfaces;
@@ -10,23 +9,22 @@ namespace webApi_HealthClinic.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class ClinicaController : ControllerBase
+    public class ComentarioController : ControllerBase
     {
-        private IClinicaRepository _clinicaRepository { get; set; }
+        private IComentarioRepository _comentarioRepository { get; set; }
 
-        public ClinicaController()
+        public ComentarioController()
         {
-            _clinicaRepository = new ClinicaRepository();
+            _comentarioRepository = new ComentarioRepository();
         }
 
         [HttpGet]
-        [Authorize (Roles ="Admin")]
         public IActionResult ListarTodos()
         {
             try
             {
-                List<ClinicaDomain> listaClinica = _clinicaRepository.ListarTodos();
-                return Ok(listaClinica);
+                List<ComentarioDomain> listaComentario = _comentarioRepository.ListarTodos();
+                return Ok(listaComentario);
             }
             catch (Exception e)
             {
@@ -34,12 +32,13 @@ namespace webApi_HealthClinic.Controllers
             }
         }
 
+
         [HttpPost]
-        public IActionResult Cadastrar(ClinicaDomain clinica)
+        public IActionResult Comentar(ComentarioDomain novoComentario)
         {
             try
             {
-                _clinicaRepository.Cadastrar(clinica);
+                _comentarioRepository.Comentar(novoComentario);
 
                 return StatusCode(201);
             }
@@ -50,27 +49,12 @@ namespace webApi_HealthClinic.Controllers
             }
         }
 
-
-        [HttpPut("{id}")]
-        public IActionResult Atualizar(Guid id, ClinicaDomain clinica)
-        {
-            try
-            {
-                _clinicaRepository.Atualizar(id, clinica);
-                return NoContent();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
         [HttpDelete("{id}")]
         public IActionResult Deletar(Guid id)
         {
             try
             {
-                _clinicaRepository.Deletar(id);
+                _comentarioRepository.Deletar(id);
                 return NoContent();
             }
             catch (Exception e)
@@ -80,14 +64,27 @@ namespace webApi_HealthClinic.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(Guid id, ComentarioDomain comentario)
+        {
+            try
+            {
+                _comentarioRepository.Atualizar(id, comentario);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(Guid id)
         {
             try
             {
-                ClinicaDomain clinicaBuscada = _clinicaRepository.BuscarPorId(id);
-                return Ok(clinicaBuscada);
+                ComentarioDomain comentarioBuscado = _comentarioRepository.BuscarPorId(id);
+                return Ok(comentarioBuscado);
             }
             catch (Exception e)
             {
@@ -95,6 +92,5 @@ namespace webApi_HealthClinic.Controllers
                 return BadRequest(e.Message);
             }
         }
-
     }
 }

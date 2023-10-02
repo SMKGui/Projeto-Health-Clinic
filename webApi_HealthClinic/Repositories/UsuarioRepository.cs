@@ -24,6 +24,7 @@ namespace webApi_HealthClinic.Repositories
                     Nome = u.Nome,
                     Email = u.Email,
                     Senha = u.Senha,
+                    
 
                     TipoUsuario = new TipoUsuarioDomain()
                     {

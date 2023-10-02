@@ -28,7 +28,16 @@ namespace webApi_HealthClinic.Repositories
 
         public ClinicaDomain BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ClinicaDomain clinicaBuscada = ctx.Clinica.Find(id);
+                return clinicaBuscada;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void Cadastrar(ClinicaDomain novaCLinica)
@@ -47,7 +56,21 @@ namespace webApi_HealthClinic.Repositories
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ClinicaDomain clinica = ctx.Clinica.Find(id);
+
+                if (clinica != null)
+                {
+                    ctx.Clinica.Remove(clinica);
+                }
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public List<ClinicaDomain> ListarTodos()
