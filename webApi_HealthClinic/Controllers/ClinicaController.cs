@@ -20,7 +20,7 @@ namespace webApi_HealthClinic.Controllers
         }
 
         [HttpGet]
-        [Authorize (Roles ="Admin")]
+        //[Authorize (Roles ="Admin")]
         public IActionResult ListarTodos()
         {
             try

@@ -41,7 +41,8 @@ namespace webApi_HealthClinic.Controllers
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email!),
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Senha!),
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
-                    new Claim(ClaimTypes.Role, usuarioBuscado.TipoUsuario!.TituloUsuario!),
+                    new Claim(ClaimTypes.Role, usuarioBuscado.TipoUsuario!.TituloUsuario!.Trim()),
+
 
                     new Claim("Claim Personalizada", "Valor Personalizado")
                 };

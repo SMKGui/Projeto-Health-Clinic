@@ -106,11 +106,11 @@ app.UseSwaggerUI(options =>
 
 app.UseHttpsRedirection();
 
-//Usar autorização
-app.UseAuthorization();
-
 //Usar autenticação
 app.UseAuthentication();
+
+//Usar autorização
+app.UseAuthorization();
 
 //Mapear os controllers
 app.MapControllers();
